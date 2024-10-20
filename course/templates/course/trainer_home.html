@@ -1,0 +1,88 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Trainer Dashboard{% endblock %}
+
+{% block content %}
+  <div class="dashboard-container">
+<!-- Overview Section -->
+<div class="dashboard-section overview">
+  <h3>Overview</h3>
+  <div class="dashboard-cards">
+    <div class="card">
+      <div class="card-number">{{ total_assigned_trainings }}</div>
+      <div class="card-title">Courses</div>
+    </div>
+    <div class="card">
+      <div class="card-number">{{ completed_trainings_stat }}</div>
+      <div class="card-title">Assigned courses</div>
+    </div>
+    <div class="card">
+      <div class="card-number">{{ completion_rate }}%</div>
+      <div class="card-title">Completion rate</div>
+    </div>
+    <div class="card">
+      <div class="card-number">{{ total_training_time }}m</div>
+      <div class="card-title">Training time</div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Recent Course Activity Section -->
+    <div class="dashboard-section recent-activity">
+      <h3>Recent Course Activity</h3>
+      <div class="recent-courses">
+        {% for course in recent_courses %}
+          <div class="course-card">
+            <div class="course-title">{{ course.name }}</div>
+            <div class="course-status">{{ course.status }}</div>
+            <button class="edit-button">Edit course</button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+<!-- Calendar Section -->
+<div class="dashboard-section calendar">
+  <h3>Today</h3>
+  <div class="calendar-content">
+    {% if calendar_events %}
+      <ul>
+        {% for event in calendar_events %}
+          <li>{{ event.date }}: {{ event.event }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="calendar-empty">Nothing happening today</div>
+    {% endif %}
+  </div>
+</div>
+
+ <!-- Achievements Section -->
+<div class="dashboard-section achievements">
+  <h3>Don't miss!</h3>
+  <ul class="achievements-list">
+    <li>You have completed {{ completed_assessments }} assessments.</li>
+    <li>You have completed {{ completed_trainings }} trainings.</li>
+    <li>Your overall points are {{ overall_points }}.</li>
+  </ul>
+</div>
+
+<!-- Quick Stats Section -->
+<div class="dashboard-section quick-stats">
+  <h3>Courses' progress status</h3>
+  <div class="progress-chart">
+    <div class="progress-circle">
+      <div class="progress-percentage">100%</div>
+    </div>
+    <ul class="progress-legend">
+      <li><span class="legend-completed"></span> Completed {{ completed_trainings_stat }}</li>
+      <li><span class="legend-inprogress"></span> In progress</li>
+      <li><span class="legend-notstarted"></span> Not started</li>
+      <li><span class="legend-notpassed"></span> Not passed</li>
+    </ul>
+  </div>
+</div>
+
+
+{% endblock %}

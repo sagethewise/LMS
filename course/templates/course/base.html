@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LMS{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        <h1>trex Learning Management System</h1>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+
+        {% if is_admin %}
+            <li><a href="{% url 'users_list' %}">Users</a></li>
+            <li><a href="{% url 'course_list' %}">Courses</a></li>
+            <li><a href="{% url 'groups' %}">Groups</a></li>
+            <li><a href="{% url 'branches' %}">Branches</a></li>
+            <li>
+                <a href="#">Reports</a>
+                <ul>
+                    <li><a href="{% url 'report_users' %}">Users</a></li>
+                    <li><a href="{% url 'trainer_courses' %}">Courses</a></li>
+                    <li><a href="{% url 'report_branches' %}">Branches</a></li>
+                    <li><a href="{% url 'report_groups' %}">Groups</a></li>
+                    <li><a href="{% url 'learning_activities' %}">Learning Activities</a></li>
+                    <li><a href="{% url 'training_matrix' %}">Training Matrix</a></li>
+                    <li><a href="{% url 'timeline' %}">Timeline</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'account_settings' %}">Account & Settings</a></li>
+        {% elif is_trainer %}
+            <li><a href="{% url 'trainer_courses' %}">Courses</a></li>
+            <li><a href="{% url 'groups' %}">Groups</a></li>
+            <li><a href="{% url 'grading_hub' %}">Grading Hub</a></li>
+            <li><a href="{% url 'calendar' %}">Calendar</a></li>
+            <li>
+                <a href="#">Reports</a>
+                <ul>
+                    <li><a href="{% url 'trainer_courses' %}">Courses</a></li>
+                    <li><a href="{% url 'training_matrix' %}">Training Matrix</a></li>
+                    <li><a href="{% url 'timeline' %}">Timeline</a></li>
+                </ul>
+            </li>
+        {% elif is_learner %}
+            <li><a href="{% url 'courses' %}">Courses</a></li>
+            <li><a href="{% url 'calendar' %}">Calendar</a></li>
+        {% endif %}
+    </ul>
+    <ul class="right">
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 LMS Platform</p>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

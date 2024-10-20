@@ -1,0 +1,43 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+  <div class="users-container">
+    <h2>Users</h2>
+    <div class="users-actions">
+<div class="search-bar">
+    <input type="text" placeholder="Search">
+    <span class="search-icon">&#128269;</span> <!-- Unicode for magnifying glass icon -->
+</div>
+      <button class="add-user-btn">Add user</button>
+    </div>
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Email</th>
+          <th>Type</th>
+          <th>Registration</th>
+          <th>Last login</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A. Güngör Giray</td>
+          <td>asligiray@trex.com.tr</td>
+          <td>SuperAdmin</td>
+          <td>21/08/2024</td>
+          <td>8 hours ago</td>
+        </tr>
+        <tr>
+          <td>H. Turan</td>
+          <td>handeturan@trex.com.tr</td>
+          <td>Learner-Type</td>
+          <td>22/08/2024</td>
+          <td>Yesterday</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

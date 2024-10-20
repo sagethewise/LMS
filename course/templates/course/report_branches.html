@@ -1,0 +1,12 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Branch Reports{% endblock %}
+
+{% block content %}
+  <h2>Branch Reports</h2>
+  <ul>
+    {% for branch in branches %}
+      <li>{{ branch.name }} - Location: {{ branch.location }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

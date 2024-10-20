@@ -1,0 +1,34 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <h2>Login</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="group">Select Group:</label>
+    <select name="group" id="group" required>
+      <option value="Admin">Admin</option>
+      <option value="Trainer">Trainer</option>
+      <option value="Learner">Learner</option>
+    </select>
+    <br><br>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+    <br><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+    <br><br>
+    <button type="submit">Login</button>
+  </form>
+
+  {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+  {% endif %}
+{% endblock %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>

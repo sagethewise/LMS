@@ -1,0 +1,12 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Course Reports{% endblock %}
+
+{% block content %}
+  <h2>Course Reports</h2>
+  <ul>
+    {% for course in courses %}
+      <li>{{ course.name }} - Created on: {{ course.created_at }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

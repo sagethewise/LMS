@@ -1,0 +1,12 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Group Reports{% endblock %}
+
+{% block content %}
+  <h2>Group Reports</h2>
+  <ul>
+    {% for group in groups %}
+      <li>{{ group.name }} - Users: {{ group.user_set.count }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

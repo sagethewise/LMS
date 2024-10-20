@@ -1,0 +1,65 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Learner Dashboard{% endblock %}
+
+{% block content %}
+  <div class="dashboard-container">
+    <!-- Recent Course Activity Section -->
+    <div class="dashboard-section recent-activity">
+      <h3>Recent course activity</h3>
+      <div class="recent-courses">
+        {% for course in recent_courses %}
+          <div class="course-card">
+            <div class="course-title">{{ course.name }}</div>
+            <div class="course-status">{{ course.status }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Leaderboard Section -->
+    <div class="dashboard-section leaderboard">
+      <h3>Liderlik Tablosu</h3>
+      <div class="leaderboard-content">
+        <div class="leaderboard-item">1. H. Turan - 525 Puan</div>
+        <div class="leaderboard-item">2. A. Güngör Giray - 0 Puan</div>
+      </div>
+    </div>
+
+    <!-- Calendar Section -->
+    <div class="dashboard-section calendar">
+      <h3>Bugün</h3>
+      <div class="calendar-content">
+        <div class="calendar-date">{{ today }}</div>
+        <div class="calendar-empty">Nothing happening today</div>
+      </div>
+    </div>
+
+    <!-- Achievements Section -->
+    <div class="dashboard-section achievements">
+      <h3>Achievements</h3>
+      <ul class="achievements-list">
+        <li>Puanlar: {{ points }}</li>
+        <li>Seviye: {{ level }}</li>
+        <li>Rozetler: {{ badges }}</li>
+        <li>Eğitimler: {{ trainings }}</li>
+      </ul>
+    </div>
+
+    <!-- Quick Stats Section -->
+    <div class="dashboard-section quick-stats">
+      <h3>Eğitimlerim</h3>
+      <div class="progress-chart">
+        <div class="progress-circle">
+          <div class="progress-percentage">100%</div>
+        </div>
+        <ul class="progress-legend">
+          <li><span class="legend-completed"></span> Tamamlandı</li>
+          <li><span class="legend-inprogress"></span> Devam ediyor</li>
+          <li><span class="legend-notstarted"></span> Başlatılmadı</li>
+          <li><span class="legend-notpassed"></span> Geçmedi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

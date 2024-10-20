@@ -1,0 +1,12 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Learning Activities Reports{% endblock %}
+
+{% block content %}
+  <h2>Learning Activities</h2>
+  <ul>
+    {% for activity in activities %}
+      <li>{{ activity.name }} - Status: {{ activity.get_status_display }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

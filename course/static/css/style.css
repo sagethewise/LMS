@@ -1,0 +1,371 @@
+/* Genel Gövde Stilleri */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f5f7;
+    margin: 0;
+    padding: 0;
+    color: #0c0c0c;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #007b43;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    height: 60px; /* Header yüksekliği */
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Yan Menü Stilleri */
+nav {
+    background-color: #00a859;
+    color: white;
+    width: 200px;
+    flex-shrink: 0;
+    height: calc(100vh - 100px); /* Footer'a kadar uzan, ancak header ve footer yüksekliğini çıkar */
+    position: fixed;
+    top: 60px; /* Header yüksekliği kadar offset */
+    left: 0;
+    padding-top: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #007b43;
+}
+
+nav ul li ul {
+    display: none; /* Alt menüleri gizliyoruz */
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #00a859;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    z-index: 1000;
+}
+
+nav ul li:hover > ul {
+    display: block; /* Hover olduğunda alt menü açılır */
+}
+
+nav ul li ul li {
+    width: 180px; /* Alt menü genişliği */
+}
+
+nav ul li ul li a {
+    padding: 10px 20px; /* Alt menü elemanları padding */
+    color: white;
+}
+
+nav ul li ul li a:hover {
+    background-color: #007b43; /* Alt menü hover efekti */
+}
+
+nav ul li.reports > a:after {
+    content: '▼'; /* Reports menüsüne açılır menü oku eklenir */
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+nav ul li.reports ul {
+    top: 0; /* Alt menünün, ana menü ile aynı hizada başlamasını sağlıyoruz */
+    left: 200px; /* Alt menü Reports menüsünün sağında görünür */
+    display: none;
+}
+
+nav ul li.reports:hover ul {
+    display: block; /* Reports üzerine gelindiğinde alt menü açılır */
+}
+
+/* İçerik Alanı Stilleri */
+main {
+    margin-left: 220px; /* Menünün genişliği kadar offset */
+    padding: 80px 20px 20px 20px; /* Header ve diğer içerikler için boşluk ekle */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/** Admin Dashboard **/
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.dashboard-row {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+
+.dashboard-section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.dashboard-section.overview, .dashboard-section.users {
+    flex: 1 1 48%; /* Overview ve Users bölümleri aynı genişlikte ve yükseklikte */
+    height: 300px; /* İstediğiniz yükseklik burada ayarlanabilir */
+}
+
+.dashboard-section.quick-actions, .dashboard-section.timeline {
+    flex: 1 1 48%; /* Quick Actions ve Timeline bölümleri aynı genişlikte ve yükseklikte */
+    height: 300px; /* İstediğiniz yükseklik burada ayarlanabilir */
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    height: 70%; /* Kartların alanı kapsaması için */
+}
+
+.card {
+    flex: 1;
+    background: #f7f7f7;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-title {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.quick-actions .dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 sütunlu grid */
+    gap: 10px; /* Butonlar arasındaki boşluk */
+}
+
+.quick-actions .card {
+    background-color: #f7f7f7; /* Gri arka plan */
+    text-align: center;
+    padding: 10px; /* Yüksekliği azaltmak için padding'i düşürdüm */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: auto; /* Kart yüksekliğini içeriğe göre ayarlamak için */
+}
+
+.quick-actions .card button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: #333; /* Siyah yazı rengi */
+    cursor: pointer;
+    width: 100%;
+    padding: 8px; /* Butonun içindeki boşluğu azaltmak için padding'i düşürdüm */
+    border-radius: 5px;
+}
+
+.quick-actions .card button:hover {
+    background-color: #cccccc; /* Hover durumu için açık gri renk */
+}
+
+.timeline-list {
+    list-style: none;
+    padding-left: 0;
+    height: 100%; /* Tüm alanı kapsaması için */
+    overflow-y: auto; /* Liste uzun olduğunda kaydırma çubuğu ekle */
+}
+
+.timeline-list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f7f7f7;
+    border-radius: 8px;
+}
+
+.timeline-action {
+    font-weight: bold;
+}
+
+.timeline-timestamp {
+    color: #999;
+    font-size: 0.9em;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.chart {
+    flex: 1 1 48%;
+    height: 400px;
+}
+/** Users **/ 
+.users-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 40px); /* Sol ve sağda 20px padding kalacak şekilde genişlik ayarı */
+    margin: 20px auto;
+    height: calc(100vh - 120px); /* Header ve Footer dışında kalan alanı kaplamak için */
+    overflow-y: auto; /* İçerik fazla gelirse kaydırma çubuğu ekler */
+}
+
+.users-container h2 {
+    margin-top: 0;
+    color: #080808;
+}
+
+.users-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    width: 250px;
+    background-color: white;
+}
+
+.search-bar input[type="text"] {
+    border: none;
+    outline: none;
+    padding: 8px;
+    width: 100%;
+    background-color: transparent;
+    font-size: 14px;
+}
+
+.search-bar .search-icon {
+    color: #00a859;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.users-table thead {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.users-table th, .users-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.users-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+.add-user-btn {
+    background-color: #00a859;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-user-btn:hover {
+    background-color: #007b43;
+}
+
+/* Footer Stili */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007b43;
+    color: white;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 40px; /* Footer yüksekliği */
+}
+
+
+/* Responsive Düzen */
+@media (max-width: 768px) {
+    .dashboard-section, .timeline {
+        flex: 1 1 100%; /* Mobilde her şey tam genişlikte */
+    }
+
+    nav ul li.reports ul {
+        left: 0; /* Mobilde alt menü sol hizada açılacak */
+        top: auto;
+        position: relative;
+    }
+
+    nav ul li.reports:hover ul {
+        display: block;
+    }
+
+    .chart {
+        width: 100%; /* Mobilde grafikleri tam genişlikte göster */
+        height: auto;
+    }
+}

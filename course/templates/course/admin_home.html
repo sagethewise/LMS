@@ -1,0 +1,104 @@
+{% extends 'course/base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+  <div class="dashboard-container">
+  <div class="dashboard-row">
+    <!-- Overview Section -->
+    <div class="dashboard-section overview">
+      <h3>Overview</h3>
+      <div class="dashboard-cards">
+        <div class="card">
+          <div class="card-number">{{ active_users }}</div>
+          <div class="card-title">Active users</div>
+        </div>
+        <div class="card">
+          <div class="card-number">{{ assigned_courses }}</div>
+          <div class="card-title">Assigned courses</div>
+        </div>
+        <div class="card">
+          <div class="card-number">{{ training_time }}m</div>
+          <div class="card-title">Training time</div>
+        </div>
+        <div class="card">
+          <div class="card-number">{{ completion_rate }}%</div>
+          <div class="card-title">Completion rate</div>
+        </div>
+      </div>
+    </div> 
+    <!-- Quick Actions Section -->
+<!-- Quick Actions Section -->
+<div class="dashboard-section quick-actions">
+  <h3>Quick actions</h3>
+  <div class="dashboard-cards">
+    <div class="card">
+      <button><i class="fas fa-user-plus"></i> Add User</button>
+    </div>
+    <div class="card">
+      <button><i class="fas fa-book"></i> Add Course</button>
+    </div>
+    <div class="card">
+      <button><i class="fas fa-users"></i> Add Group</button>
+    </div>
+    <div class="card">
+      <button><i class="fas fa-th-list"></i> Add Category</button>
+    </div>
+    <div class="card">
+      <button><i class="fas fa-globe"></i> Portal</button>
+    </div>
+    <div class="card">
+      <button><i class="fas fa-file-import"></i> Import-Export</button>
+    </div>
+  </div>
+</div>
+
+ </div>
+
+    <!-- Users Section -->
+  <div class="dashboard-row">
+    <div class="dashboard-section users">
+      <h3>Users</h3>
+      <div class="dashboard-cards">
+        <div class="card">
+          <div class="card-number">{{ total_users }}</div>
+          <div class="card-title">Users</div>
+        </div>
+        <div class="card">
+          <div class="card-number">{{ learners }}</div>
+          <div class="card-title">Learners</div>
+        </div>
+        <div class="card">
+          <div class="card-number">{{ trainers }}</div>
+          <div class="card-title">Instructors</div>
+        </div>
+        <div class="card">
+          <div class="card-number">{{ admins }}</div>
+          <div class="card-title">Admins</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Timeline Section -->
+<div class="dashboard-section timeline">
+    <h3>Timeline</h3>
+    <ul class="timeline-list">
+        {% for log in timeline_logs %}
+            <li>
+                <span class="timeline-action">{{ log.user.username }} {{ log.action }}</span>
+                <span class="timeline-timestamp">{{ log.timestamp|date:"d M Y H:i" }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+<div class="dashboard-row">
+  <!-- Chart Section -->
+  <div class="chart-container">
+    <div class="chart" id="portal-activity-chart"></div>
+    <div class="chart" id="courses-progress-chart"></div>
+  </div>
+  </div>
+{% endblock %}
